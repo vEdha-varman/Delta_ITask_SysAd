@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+user=$(whoami)
 loc_file=$(locate AttendManip.sh)
 nl=$(cat /etc/crontab | grep -c 'AttendManip.sh')
 if [[ $nl -eq 0 ]]

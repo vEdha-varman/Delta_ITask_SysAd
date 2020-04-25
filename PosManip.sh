@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+user=$(whoami)
 loc_file=$(locate PosManip.sh)
 nl=$(cat /etc/crontab | grep -c 'PosManip.sh')
 if [[ $nl -eq 0 ]]
