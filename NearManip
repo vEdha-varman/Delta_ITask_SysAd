@@ -1,0 +1,15 @@
+#!/bin/sh
+
+
+user=$(whoami)
+nl=$(cat /etc/crontab | grep -c 'nearest')
+if [ "$nl" -eq 0 ]
+then
+	echo "0  9  * * * $user nearest" | sudo tee -a /etc/crontab >/dev/null 2>&1
+fi
+
+sudo touch ~ChiefCommander/nearest10.txt
+
+Date=$(date +"%F")
+
+grep -i "$Date.* Army" position.log | awk '{print substr($1,2,11),$2,((substr($3,3)-28.7041)^2+(substr($4,3)-77.1025)^2)}' | sort -k 3 | head --lines 10 | awk '{print $1,$2}' | sudo tee -a ~ChiefCommander/nearest10.txt  # >/dev/null 2>&1

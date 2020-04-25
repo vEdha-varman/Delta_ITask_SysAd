@@ -1,0 +1,19 @@
+#!/bin/sh
+
+
+user=$(whoami)
+nl=$(cat /etc/crontab | grep -c 'finalattendance')
+if [ "$nl" -eq 0 ]
+then
+	echo "0  9  * * * $user finalattendance" | sudo tee -a /etc/crontab >/dev/null 2>&1
+fi
+
+sudo touch ~ChiefCommander/attendance_report.txt
+
+Date=$(date +"%F")
+
+grep -i "$Date.* Army" attendance.log | awk '{print "\t"substr($1,2,10),$2,$3}' | sudo tee -a ~ArmyGeneral/attendance_record.txt
+grep -i "$Date.* Navy" attendance.log | awk '{print "\t"substr($1,2,10),$2,$3}' | sudo tee -a ~NavyMarshal/attendance_record.txt
+grep -i "$Date.* AirForce" attendance.log | awk '{print "\t"substr($1,2,10),$2,$3}' | sudo tee -a ~AirForceChief/attendance_record.txt
+
+	
