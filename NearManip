@@ -12,4 +12,4 @@ sudo touch ~ChiefCommander/nearest10.txt
 
 Date=$(date +"%F")
 
-grep -i "$Date.* Army" position.log | awk '{print substr($1,2,11),$2,((substr($3,3)-28.7041)^2+(substr($4,3)-77.1025)^2)}' | sort -k 3 | head --lines 10 | awk '{print $1,$2}' | sudo tee -a ~ChiefCommander/nearest10.txt  # >/dev/null 2>&1
+awk 'FNR==NR{a[$2]=$3;next} {if(a[$2] == "YES") {print $1,$2,$3,$4}}' attendance.log position.log | grep -i "$Date.* Army" | awk '{print substr($1,2,11),$2,((substr($3,3)-28.7041)^2+(substr($4,3)-77.1025)^2)}' | sort -k 3 | head --lines 10 | awk '{print $1,$2}' | sudo tee -a ~ChiefCommander/nearest10.txt  # >/dev/null 2>&1
