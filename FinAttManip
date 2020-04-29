@@ -10,7 +10,7 @@ fi
 
 sudo touch ~ChiefCommander/attendance_report.txt
 
-Date=$(date +"%F")
+Date=$(date -I -d "-1 day")
 
 grep -i "$Date.* Army" attendance.log | awk '{print "\t"substr($1,2,10),$2,$3}' | sudo tee -a ~ArmyGeneral/attendance_record.txt
 grep -i "$Date.* Navy" attendance.log | awk '{print "\t"substr($1,2,10),$2,$3}' | sudo tee -a ~NavyMarshal/attendance_record.txt

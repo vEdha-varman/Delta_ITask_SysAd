@@ -10,7 +10,7 @@ then
 fi
 
 
-Date=$(date +"%F")
+Date=$(date -I -d "-1 day")
 
 sudo touch /home/ArmyGeneral/attendance_record.txt
 echo "$Date:" | sudo tee -a /home/ArmyGeneral/attendance_record.txt >/dev/null 2>&1
