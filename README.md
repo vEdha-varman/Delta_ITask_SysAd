@@ -8,4 +8,4 @@ This is for Delta SysAd Inductions Task 1
 The Scheduling is done using crontab.
 _record_ works differently for each troop chief, and other users.
 
-The Hacker mode also works for me now
+The Hacker mode also works now
